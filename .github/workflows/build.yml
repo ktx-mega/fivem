@@ -1,0 +1,8 @@
+name: Main Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call_ci_workflow:
+    uses: ./.github/workflows/ci-build.yml
