@@ -5,7 +5,7 @@ pwsh ./fxd.ps1 gen -game $PROGRAM
 
 cd code/build/$PROGRAM/$([[ $PROGRAM = server ]] && echo windows || echo '')
 
-"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MsBuild.exe" CitizenMP.sln -t:build -p:OutDir=C:\FiveMBuild -restore -p:RestorePackagesConfig=true -p:preferredtoolarchitecture=x64 -p:configuration=release -maxcpucount:4 -v:q -fl1 "-flp1:logfile=errors.log;errorsonly"
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MsBuild.exe" CitizenMP.sln -t:build -restore -p:RestorePackagesConfig=true -p:preferredtoolarchitecture=x64 -p:configuration=release -maxcpucount:4 -v:q -fl1 "-flp1:logfile=errors.log;errorsonly"
 MSBUILD_ERROR=$?
 
 if [[ $MSBUILD_ERROR -eq 0 ]]; then
