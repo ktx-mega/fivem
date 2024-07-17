@@ -62,7 +62,8 @@ jobs:
         if: success()
         shell: bash
         run: |
-          cd "$ROOT_REPO/bin/$PROGRAM/release"
+          ls -R "$ROOT_REPO"
+          cd "$ROOT_REPO/code/bin/$PROGRAM/release"
           zip -r build_output.zip .
 
       - name: Upload Artifact
