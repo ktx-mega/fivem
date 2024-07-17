@@ -58,13 +58,6 @@ jobs:
           chmod +x "$BUILD_SCRIPT"
           $BUILD_SCRIPT "$ROOT_DEP" $JOB_SLOTS
 
-      - name: Debug Directory Structure
-        if: success()
-        shell: bash
-        run: |
-          echo "Listing the contents of C:\FiveMBuild
-          ls -R "ROOT_REPO"
-
       - name: Archive Build Output
         if: success()
         shell: bash
