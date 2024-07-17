@@ -9,9 +9,6 @@ jobs:
       matrix:
         builds:
           - [ FiveM,  five,   windows ]
-          - [ RedM,   rdr3,   windows ]
-          - [ Server, server, windows ]
-          - [ Server, server, linux   ]
     name: ${{ matrix.builds[0] }}${{ matrix.builds[2] == 'linux' && ' (Linux)' || '' }}
     runs-on: ${{ matrix.builds[2] == 'windows' && 'windows-latest' || 'ubuntu-20.04' }}
     env:
@@ -60,3 +57,17 @@ jobs:
           
           chmod +x "$BUILD_SCRIPT"
           $BUILD_SCRIPT "$ROOT_DEP" $JOB_SLOTS
+
+      - name: Archive Build Output
+        if: success()
+        shell: bash
+        run: |
+          cd "$ROOT_REPO/code/build/$PROGRAM/windows"
+          zip -r build_output.zip .
+
+      - name: Upload Artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: fivem-windows-build
+          path: ${{ env.ROOT_REPO }}/code/build/$PROGRAM/windows/build_output.zip
