@@ -63,18 +63,18 @@ jobs:
         shell: bash
         run: |
           echo "Listing the contents of C:\FiveMBuild
-          ls "C:\FiveMBuild"
+          ls -R "ROOT_REPO"
 
       - name: Archive Build Output
         if: success()
         shell: bash
         run: |
-          cd "C:\FiveMBuild"
-          zip -r build_output.zip C:\FiveMBuild\
+          cd "$ROOT_REPO/bin/$PROGRAM/release"
+          zip -r build_output.zip .
 
       - name: Upload Artifact
         if: success()
         uses: actions/upload-artifact@v3
         with:
           name: fivem-windows-build
-          path: C:\FiveMBuild\build_output.zip
+          path: ${{ env.ROOT_REPO }}/bin/$PROGRAM/release/build_output.zip
