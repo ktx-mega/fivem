@@ -58,11 +58,21 @@ jobs:
           chmod +x "$BUILD_SCRIPT"
           $BUILD_SCRIPT "$ROOT_DEP" $JOB_SLOTS
 
+      - name: Debug Directory Structure
+        if: success()
+        shell: bash
+        run: |
+          echo "Listing the contents of $ROOT_REPO/code/build/$PROGRAM"
+          ls "$ROOT_REPO/code/build/$PROGRAM"
+
+          echo "Listing the contents of $ROOT/code/build/$PROGRAM"
+          ls "$ROOT/code/build/$PROGRAM"
+
       - name: Archive Build Output
         if: success()
         shell: bash
         run: |
-          cd "$ROOT_REPO/code/build/$PROGRAM/windows"
+          cd "$ROOT/code/build/$PROGRAM/windows"
           zip -r build_output.zip .
 
       - name: Upload Artifact
@@ -70,4 +80,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fivem-windows-build
-          path: ${{ env.ROOT_REPO }}/code/build/$PROGRAM/windows/build_output.zip
+          path: ${{ env.ROOT }}/code/build/$PROGRAM/windows/build_output.zip
