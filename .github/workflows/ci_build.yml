@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fivem-windows-build
-          path: ${{ env.ROOT_REPO }}/bin/$PROGRAM/release/build_output.zip
+          path: ${{ env.ROOT_REPO }}/code/bin/$PROGRAM/release/build_output.zip
