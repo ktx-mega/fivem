@@ -63,7 +63,7 @@ jobs:
         shell: bash
         run: |
           cd "$ROOT_REPO/code/bin/$PROGRAM/release"
-          powershell Compress-Archive . build_output.zip
+          powershell Compress-Archive -Path . -DestinationPath ./build_output.zip 
 
       - name: Upload Artifact
         if: success()
