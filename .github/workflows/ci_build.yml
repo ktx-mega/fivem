@@ -62,7 +62,6 @@ jobs:
         if: success()
         shell: bash
         run: |
-          ls -R "$ROOT_REPO"
           cd "$ROOT_REPO/code/bin/$PROGRAM/release"
           powershell Compress-Archive . build_output.zip
 
