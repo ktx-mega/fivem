@@ -64,7 +64,7 @@ jobs:
         run: |
           ls -R "$ROOT_REPO"
           cd "$ROOT_REPO/code/bin/$PROGRAM/release"
-          zip -r build_output.zip .
+          powershell Compress-Archive . build_output.zip
 
       - name: Upload Artifact
         if: success()
